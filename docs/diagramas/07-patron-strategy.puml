@@ -1,0 +1,28 @@
+@startuml
+title Patrón Strategy - promociones por horario o día
+skinparam classAttributeIconSize 0
+
+class SelectorPromociones <<Contexto>> {
+  -promociones: List<Promocion>
+  +registrar(Promocion)
+  +mejorPara(Pedido, LocalDateTime): Promocion
+  +aplicar(Pedido, LocalDateTime): Promocion
+}
+interface Promocion <<Estrategia>> {
+  +getNombre(): String
+  +aplicaEn(LocalDateTime): boolean
+  +calcularDescuento(Pedido): int
+}
+class HappyHourBebidas <<Estrategia concreta>>
+class MartesDePostres <<Estrategia concreta>>
+class FinDeSemana <<Estrategia concreta>>
+class SinPromocion <<Estrategia concreta>>
+class CafeteriaService <<Cliente>>
+
+SelectorPromociones o--> "*" Promocion
+Promocion <|.. HappyHourBebidas
+Promocion <|.. MartesDePostres
+Promocion <|.. FinDeSemana
+Promocion <|.. SinPromocion
+CafeteriaService --> SelectorPromociones : cobrar()
+@enduml

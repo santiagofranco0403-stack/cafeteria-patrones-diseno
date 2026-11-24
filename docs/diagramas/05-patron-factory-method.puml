@@ -1,0 +1,37 @@
+@startuml
+title Patrón Factory Method - productos desde el menú configurable
+skinparam classAttributeIconSize 0
+
+abstract class CreadorProducto <<Creador>> {
+  +crear(ItemMenu): ProductoBase
+  #{abstract} crearProducto(ItemMenu): ProductoBase
+}
+class CreadorBebida <<Creador concreto>>
+class CreadorPlato <<Creador concreto>>
+class CreadorPostre <<Creador concreto>>
+
+abstract class ProductoBase <<Producto>>
+class Bebida <<Producto concreto>>
+class Plato <<Producto concreto>>
+class Postre <<Producto concreto>>
+
+class MenuConfigurable <<Cliente>> {
+  -creadores: Map<String, CreadorProducto>
+  +registrarCreador(String, CreadorProducto)
+  +cargarLineas(List<String>)
+  +buscar(String): Optional<ProductoBase>
+}
+class ItemMenu <<record>>
+
+CreadorProducto <|-- CreadorBebida
+CreadorProducto <|-- CreadorPlato
+CreadorProducto <|-- CreadorPostre
+ProductoBase <|-- Bebida
+ProductoBase <|-- Plato
+ProductoBase <|-- Postre
+CreadorBebida ..> Bebida : crea
+CreadorPlato ..> Plato : crea
+CreadorPostre ..> Postre : crea
+MenuConfigurable --> "*" CreadorProducto
+CreadorProducto ..> ItemMenu
+@enduml

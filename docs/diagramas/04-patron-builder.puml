@@ -1,0 +1,41 @@
+@startuml
+title Patrón Builder - combos paso a paso
+skinparam classAttributeIconSize 0
+
+class DirectorCombos <<Director>> {
+  -menu: MenuConfigurable
+  +comboDesayuno(): Combo
+  +comboAlmuerzo(): Combo
+}
+class ComboBuilder <<Constructor>> {
+  -nombre: String
+  -platoPrincipal: Producto
+  -bebida: Producto
+  -acompanamientos: List<Producto>
+  -postre: Producto
+  -porcentajeDescuento: int
+  +nombre(String): ComboBuilder
+  +platoPrincipal(Producto): ComboBuilder
+  +bebida(Producto): ComboBuilder
+  +acompanamiento(Producto): ComboBuilder
+  +postre(Producto): ComboBuilder
+  +descuento(int): ComboBuilder
+  +build(): Combo
+}
+class Combo <<Producto construido>> {
+  -nombre: String
+  -componentes: List<Producto>
+  -porcentajeDescuento: int
+  +getPrecio(): int
+  +getDescripcion(): String
+}
+interface Producto
+class AppConsola <<Cliente>>
+
+DirectorCombos --> ComboBuilder : usa
+ComboBuilder ..> Combo : build()
+Producto <|.. Combo
+Combo o--> "2..*" Producto
+AppConsola --> ComboBuilder : combo personalizado
+AppConsola --> DirectorCombos : combos fijos
+@enduml

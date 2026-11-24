@@ -1,0 +1,36 @@
+@startuml
+title Patrón Observer - avisos de cambio de estado del pedido
+skinparam classAttributeIconSize 0
+
+class Pedido <<Sujeto>> {
+  -observadores: List<ObservadorPedido>
+  -estado: EstadoPedido
+  +suscribir(ObservadorPedido)
+  +desuscribir(ObservadorPedido)
+  -notificar(EstadoPedido)
+  +cambiarEstado(EstadoPedido)
+}
+interface ObservadorPedido <<Observador>> {
+  +estadoCambiado(Pedido, EstadoPedido)
+}
+abstract class ObservadorConRegistro {
+  -avisos: List<String>
+  #registrar(String)
+  +setSalida(Consumer<String>)
+}
+class Cocina <<Observador concreto>>
+class Caja <<Observador concreto>> {
+  -ventas: List<Pedido>
+}
+class Mesero <<Observador concreto>>
+enum EstadoPedido
+
+Pedido o--> "*" ObservadorPedido : notifica
+Pedido --> EstadoPedido
+ObservadorPedido <|.. Cocina
+ObservadorPedido <|.. Caja
+ObservadorPedido <|.. Mesero
+ObservadorConRegistro <|-- Cocina
+ObservadorConRegistro <|-- Caja
+ObservadorConRegistro <|-- Mesero
+@enduml

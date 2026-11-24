@@ -1,0 +1,45 @@
+@startuml
+title Secuencia - del pedido al cobro (Decorator, Observer y Strategy)
+
+actor Usuario
+participant "AppConsola / AppGUI" as UI
+participant CafeteriaService as S
+participant "TipoAdicion / ShotExtra" as D
+participant Pedido as P
+participant Cocina
+participant Mesero
+participant Caja
+participant SelectorPromociones as SP
+
+Usuario -> UI : crear pedido (mesa 3)
+UI -> S : nuevoPedido(3)
+S -> P ** : new Pedido(...)
+S -> P : suscribir(cocina, caja, mesero)
+
+Usuario -> UI : capuchino + shot extra
+UI -> D : aplicar(capuchino)
+D --> UI : new ShotExtra(capuchino)
+UI -> S : agregarProducto(1, producto)
+S -> P : agregar(producto)
+
+Usuario -> UI : enviar a cocina
+UI -> S : cambiarEstado(1, EN_PREPARACION)
+S -> P : cambiarEstado(EN_PREPARACION)
+P -> Cocina : estadoCambiado(pedido, RECIBIDO)
+P -> Caja : estadoCambiado(...)
+P -> Mesero : estadoCambiado(...)
+
+Usuario -> UI : marcar listo / entregar
+UI -> S : cambiarEstado(1, LISTO)
+S -> P : cambiarEstado(LISTO)
+P -> Mesero : estadoCambiado(...) "llevar a mesa 3"
+
+Usuario -> UI : cobrar
+UI -> S : cobrar(1)
+S -> SP : aplicar(pedido, ahora)
+SP -> SP : mejorPara(pedido, ahora)
+SP -> P : aplicarPromocion(nombre, descuento)
+S -> P : cambiarEstado(PAGADO)
+P -> Caja : estadoCambiado(...) registra la venta
+S --> UI : promoción aplicada
+@enduml

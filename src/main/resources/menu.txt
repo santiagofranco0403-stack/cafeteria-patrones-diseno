@@ -1,0 +1,14 @@
+# Menú configurable de la cafetería
+# TIPO;codigo;nombre;precio;dato_extra
+BEBIDA;B01;Café americano;4500;caliente
+BEBIDA;B02;Capuchino;6500;caliente
+BEBIDA;B03;Chocolate;6000;caliente
+BEBIDA;B04;Limonada de coco;8000;fria
+BEBIDA;B05;Frappé de café;9500;fria
+PLATO;P01;Sándwich de pollo;14000;10
+PLATO;P02;Arepa con huevo;9000;8
+PLATO;P03;Hamburguesa de la casa;22000;15
+PLATO;P04;Ensalada César;18000;7
+POSTRE;D01;Brownie;6000;normal
+POSTRE;D02;Cheesecake de maracuyá;9000;normal
+POSTRE;D03;Galleta de avena;4000;sin_azucar

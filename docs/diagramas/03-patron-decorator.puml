@@ -1,0 +1,42 @@
+@startuml
+title Patrón Decorator - adiciones de productos
+skinparam classAttributeIconSize 0
+
+interface Producto <<Componente>> {
+  +getDescripcion(): String
+  +getPrecio(): int
+  +getCategoria(): Categoria
+}
+abstract class ProductoBase <<Componente concreto>>
+class Bebida <<Componente concreto>>
+class Plato <<Componente concreto>>
+
+abstract class AdicionDecorator <<Decorador>> {
+  #producto: Producto
+  #nombreAdicion(): String
+  #precioAdicion(): int
+  +getDescripcion(): String
+  +getPrecio(): int
+}
+class ShotExtra <<Decorador concreto>>
+class LecheAlmendras <<Decorador concreto>>
+class Crema <<Decorador concreto>>
+class QuesoExtra <<Decorador concreto>>
+class TocinetaExtra <<Decorador concreto>>
+
+Producto <|.. ProductoBase
+ProductoBase <|-- Bebida
+ProductoBase <|-- Plato
+Producto <|.. AdicionDecorator
+AdicionDecorator o--> "1" Producto : envuelve
+AdicionDecorator <|-- ShotExtra
+AdicionDecorator <|-- LecheAlmendras
+AdicionDecorator <|-- Crema
+AdicionDecorator <|-- QuesoExtra
+AdicionDecorator <|-- TocinetaExtra
+
+note right of AdicionDecorator
+  getPrecio() = producto.getPrecio() + precioAdicion()
+  Ej: new Crema(new ShotExtra(capuchino))
+end note
+@enduml

@@ -1,0 +1,94 @@
+@startuml
+title Diagrama de clases general
+skinparam classAttributeIconSize 0
+hide empty members
+
+package modelo {
+  interface Producto {
+    +getDescripcion(): String
+    +getPrecio(): int
+    +getCategoria(): Categoria
+  }
+  enum Categoria { BEBIDA; PLATO; POSTRE; COMBO }
+  abstract class ProductoBase
+  class Bebida
+  class Plato
+  class Postre
+  Producto <|.. ProductoBase
+  ProductoBase <|-- Bebida
+  ProductoBase <|-- Plato
+  ProductoBase <|-- Postre
+}
+
+package decorador {
+  abstract class AdicionDecorator
+  enum TipoAdicion
+}
+package fabrica {
+  class MenuConfigurable
+  abstract class CreadorProducto
+  class ItemMenu <<record>>
+}
+package builder {
+  class ComboBuilder
+  class Combo
+  class DirectorCombos
+}
+package pedido {
+  class Pedido
+  enum EstadoPedido
+  interface ObservadorPedido
+}
+package observador {
+  class Cocina
+  class Caja
+  class Mesero
+}
+package promocion {
+  interface Promocion
+  class SelectorPromociones
+}
+package reporte {
+  class ReporteVentas
+}
+package servicio {
+  class CafeteriaService
+}
+package ui {
+  class AppConsola
+  class AppGUI
+}
+
+Producto <|.. AdicionDecorator
+AdicionDecorator o--> Producto
+TipoAdicion ..> AdicionDecorator : crea
+Producto <|.. Combo
+Combo o--> "1..*" Producto
+ComboBuilder ..> Combo : construye
+DirectorCombos --> ComboBuilder
+DirectorCombos --> MenuConfigurable
+MenuConfigurable --> "*" CreadorProducto
+MenuConfigurable --> "*" ProductoBase
+CreadorProducto ..> ItemMenu
+Pedido --> "*" Producto
+Pedido --> EstadoPedido
+Pedido --> "*" ObservadorPedido
+ObservadorPedido <|.. Cocina
+ObservadorPedido <|.. Caja
+ObservadorPedido <|.. Mesero
+SelectorPromociones --> "*" Promocion
+Promocion ..> Pedido
+ReporteVentas ..> Pedido
+
+CafeteriaService --> MenuConfigurable
+CafeteriaService --> DirectorCombos
+CafeteriaService --> SelectorPromociones
+CafeteriaService --> Cocina
+CafeteriaService --> Caja
+CafeteriaService --> Mesero
+CafeteriaService --> "*" Pedido
+CafeteriaService ..> ReporteVentas
+
+AppConsola --> CafeteriaService
+AppGUI --> CafeteriaService
+@enduml

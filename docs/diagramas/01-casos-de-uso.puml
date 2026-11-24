@@ -1,0 +1,37 @@
+@startuml
+title Casos de uso - Sistema de pedidos de la cafetería
+left to right direction
+
+actor Mesero
+actor Cocina
+actor Cajero
+
+rectangle "Sistema de pedidos" {
+  usecase "Consultar menú" as UC1
+  usecase "Crear pedido por mesa" as UC2
+  usecase "Agregar producto" as UC3
+  usecase "Agregar adiciones" as UC4
+  usecase "Agregar combo" as UC5
+  usecase "Armar combo paso a paso" as UC6
+  usecase "Cambiar estado del pedido" as UC7
+  usecase "Recibir aviso de cambio de estado" as UC8
+  usecase "Cobrar pedido" as UC9
+  usecase "Aplicar promoción vigente" as UC10
+  usecase "Cierre de caja y reporte" as UC11
+}
+
+Mesero --> UC1
+Mesero --> UC2
+Mesero --> UC3
+Mesero --> UC5
+Mesero --> UC7
+UC3 <.. UC4 : <<extend>>
+UC5 <.. UC6 : <<extend>>
+Cocina --> UC7
+Cocina --> UC8
+Mesero --> UC8
+Cajero --> UC8
+Cajero --> UC9
+UC9 ..> UC10 : <<include>>
+Cajero --> UC11
+@enduml

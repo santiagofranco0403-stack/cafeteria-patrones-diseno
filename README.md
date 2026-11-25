@@ -8,7 +8,7 @@ versión con interfaz gráfica
 
 Nombre 
 
-| JUAN SEBASTIAN ROJAS VARGAS 
+| JUAN SEBASTIAN ROJAS VARGAS | | 
 |  JOHAN SANTIAGO FRANCO CORREA| | 
 
 

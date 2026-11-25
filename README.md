@@ -8,9 +8,9 @@ Sistema de pedidos para un local con productos personalizables, hecho en Java, c
 
 | Nombre | Usuario de GitHub | Aporte principal |
 |---|---|---|
-| _(completar)_ | | |
-| _(completar)_ | | |
-| _(completar)_ | | |
+| JUAN SEBASTIAN ROJAS VARGAS  | | |
+| JOHAN SANTIAGO FRANCO CORREA| | |
+
 
 ## Funcionalidades implementadas
 

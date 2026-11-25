@@ -1,12 +1,12 @@
-# Cafetería – Sistema de pedidos con patrones de diseño
+Cafetería – Sistema de pedidos 
 
-Proyecto del Parcial 3 de Ingeniería de Software 2 (Propuesta 3: cafetería o restaurante).
+ cafetería o restaurante
 Sistema de pedidos para un local con productos personalizables, hecho en Java, con
-**versión por consola** y **versión con interfaz gráfica (Swing)**, las dos sobre el mismo núcleo.
+versión con interfaz gráfica  
 
 ## Integrantes
 
-| Nombre | Usuario de GitHub | Aporte principal |
+| Nombre | 
 |---|---|---|
 | JUAN SEBASTIAN ROJAS VARGAS  | | |
 | JOHAN SANTIAGO FRANCO CORREA| | |

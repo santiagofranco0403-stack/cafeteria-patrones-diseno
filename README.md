@@ -6,13 +6,12 @@ versión con interfaz gráfica
 
 ## Integrantes
 
-| Nombre | 
-|---|---|---|
-| JUAN SEBASTIAN ROJAS VARGAS  | | |
-| JOHAN SANTIAGO FRANCO CORREA| | |
+Nombre 
+
+| JUAN SEBASTIAN ROJAS VARGAS  |  JOHAN SANTIAGO FRANCO CORREA| | |
 
 
-## Funcionalidades implementadas
+ Funcionalidades implementadas
 
 - Menú configurable leído desde `src/main/resources/menu.txt` (bebidas, platos y postres).
 - Adiciones opcionales que cambian precio y descripción (shot extra, leche de almendras, crema,

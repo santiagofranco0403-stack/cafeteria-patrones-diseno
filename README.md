@@ -8,7 +8,8 @@ versión con interfaz gráfica
 
 Nombre 
 
-| JUAN SEBASTIAN ROJAS VARGAS  |  JOHAN SANTIAGO FRANCO CORREA| | 
+| JUAN SEBASTIAN ROJAS VARGAS 
+|  JOHAN SANTIAGO FRANCO CORREA| | 
 
 
  Funcionalidades implementadas
@@ -22,7 +23,7 @@ Nombre
 - Aviso automático a **cocina**, **caja** y **mesero** cuando cambia el estado de un pedido.
 - Promociones por horario o por día (happy hour de bebidas, martes de postres, fin de semana);
   al cobrar se aplica la mejor promoción vigente.
-- Cierre de caja con reporte de ventas (totales, descuentos y ventas por categoría).
+- Cierre de caja con reporte de ventas (totales, descuentos y ventas por categoría)
 
 ### Fuera del alcance
 
